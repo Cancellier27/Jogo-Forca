@@ -22,8 +22,8 @@ function Digitar(letra) {
     palavrasDigitadas.add(letra);
     document.querySelector('.used').innerHTML = letra;
 
-    const word = document.getElementById('word').innerHTML;
-    const aLetraDigitadaEstaInclusaNaPalavra = word.toUpperCase().includes(letra.toUpperCase());
+    const palavraCorreta = document.getElementById('word').innerHTML;
+    const aLetraDigitadaEstaInclusaNaPalavra = palavraCorreta.toUpperCase().includes(letra.toUpperCase());
 
     const aindaRestamChances =  counter <8;
 
