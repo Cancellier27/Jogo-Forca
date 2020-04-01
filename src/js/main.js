@@ -1,4 +1,4 @@
-let palavrasDigitadas = []
+let palavrasDigitadas = new Set();
 let counter = 2
 let erros = 1
 const word = document.getElementById('word').innerHTML
@@ -20,10 +20,9 @@ function hideWord(simbol) {
 }
 
 function Digitar(letra) {
-    // Adicionar a Letra já digitada ao array de letras usadas
-    palavrasDigitadas.push(letra)
+    palavrasDigitadas.add(letra);
 
-    let unico = palavrasDigitadas.filter(function (elem, index, self) {
+    let unico = Array.from(palavrasDigitadas).filter(function (elem, index, self) {
         return index === self.indexOf(elem);
     });
     document.querySelector('.used').innerHTML = unico
