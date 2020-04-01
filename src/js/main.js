@@ -1,8 +1,7 @@
 let palavrasDigitadas = new Set();
-let counter = 2
-let erros = 1
-const word = document.getElementById('word').innerHTML
-const WORD = word.toUpperCase()
+let counter = 2;
+let erros = 1;
+
 
 function hideWord(simbol) {
     this.newWord = word.toUpperCase().split(' ')
@@ -23,19 +22,30 @@ function Digitar(letra) {
     palavrasDigitadas.add(letra);
     document.querySelector('.used').innerHTML = letra;
 
-    // invoca a function para adicionar a letra na palavre e troca a imagem da forca
-    if (WORD.indexOf(letra) >= 0 && counter < 8) {
-        botaLetra(letra)
-    } else if (counter < 8) {
-        changeImage(counter)
-        document.querySelector('.erros').innerHTML = erros
-        counter += 1
-        erros += 1
-    } else {
-        alert('Você Perdeu! Clique em recomeçar.')
+    const word = document.getElementById('word').innerHTML;
+    const aLetraDigitadaEstaInclusaNaPalavra = word.toUpperCase().includes(letra.toUpperCase());
+
+    const aindaRestamChances =  counter <8;
+
+    if(!aindaRestamChances){
+        alert('Você Perdeu! Clique em recomeçar.');
+        return;  // interrompe a execução da função
     }
 
-    if (erros == 7) {
+    if(aLetraDigitadaEstaInclusaNaPalavra){
+        // invoca a function para adicionar a letra na palavre e troca a imagem da forca
+        botaLetra(letra);
+
+        return; // interrompe a execução da função
+    }
+
+    changeImage(counter);
+
+    document.querySelector('.erros').innerHTML = erros;
+    counter += 1;
+    erros += 1;
+
+    if (erros === 7) {
         document.querySelector('.answer').style.display = 'flex'
     }
 }
