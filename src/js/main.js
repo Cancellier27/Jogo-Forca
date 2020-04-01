@@ -19,9 +19,9 @@ function hideWord(simbol) {
     return document.querySelector('.secret').innerHTML = ThisHideWord
 }
 
-function Digitar(valor) {
+function Digitar(letra) {
     // Adicionar a Letra já digitada ao array de letras usadas
-    palavrasDigitadas.push(valor)
+    palavrasDigitadas.push(letra)
 
     let unico = palavrasDigitadas.filter(function (elem, index, self) {
         return index === self.indexOf(elem);
@@ -29,8 +29,8 @@ function Digitar(valor) {
     document.querySelector('.used').innerHTML = unico
 
     // invoca a function para adicionar a letra na palavre e troca a imagem da forca
-    if (WORD.indexOf(valor) >= 0 && counter < 8) {
-        botaLetra(valor)
+    if (WORD.indexOf(letra) >= 0 && counter < 8) {
+        botaLetra(letra)
     } else if (counter < 8) {
         changeImage(counter)
         document.querySelector('.erros').innerHTML = erros
