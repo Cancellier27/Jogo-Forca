@@ -13,8 +13,8 @@ const PALAVRA_CORRETA = recuperarPalavraCorreta();
 document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
 // CRIA UM MAPA PARA CONTROLAR SE A PALAVRA SECRETA JA FOI DESCOBERTA
-const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrent) => {
-    acumulado.set(corrent, SIMBOLO_LETRA_NAO_ACERTADA);
+const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
+    acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
     return acumulado;
 }, new Map());
 
@@ -54,7 +54,9 @@ function Digitar(letra) {
 
 function atualiza() {
     const letrasDoResultado = Array.from(resultado.values());
-    const palavraEscondida = letrasDoResultado.join(' ');
+    const palavraEscondida = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
+        return `${acumulado} ${resultado.get(corrente)}`;
+    }, '');
 
     document.querySelector('.secret').innerHTML = palavraEscondida;
 
