@@ -23,7 +23,7 @@ function esconderPalavraCorreta(simbolo) {
 
 function Digitar(letra) {
     palavrasDigitadas.add(letra);
-    document.querySelector('.used').innerHTML = letra;
+    document.querySelector('.used').innerHTML = Array.from(palavrasDigitadas).join(' - ');
 
     const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(letra.toUpperCase());
 
