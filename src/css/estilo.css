@@ -1,0 +1,128 @@
+* {
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+    font-size: 1em;
+}
+
+body {
+    background-color: #333;
+}
+
+h2 {
+    font-size: 1.2em;
+}
+
+.divForm {
+    /* background-color: red; */
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.imagem {
+    display: flex;
+}
+
+.imagem div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem div p {
+    margin: 0;
+    font-size: 2em;
+}
+
+.imagem div h2 {
+    margin: 0;
+}
+
+
+.imputs {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imput {
+    width: 250px;
+    color: #000;
+}
+
+.imputs button {
+    color: #000;
+    background-color: tomato;
+    border-radius: 25px;
+    padding: 0;
+    width: 50%;
+}
+
+.bodyForca {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.teclado input {
+    width: 30px;
+    border-radius: 25px;
+    color: #000;
+    background-color: lightcyan;
+}
+
+.answer {
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.answer p {
+    padding: 5px;
+}
+
+.findOut {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.findOut p,h2 {
+    padding: 5px;
+}
+
+.findOut p {
+    font-size: 1.2em;
+}
+
+.used {
+    margin: 0;
+    padding: 10px 2px;
+    overflow: hidden;
+    border: solid 2px tomato;
+    height: 25px;
+    width: 300px;
+}
+
+.voltar {
+    color: #000;
+    border-radius: 25px;
+    margin: 30px 0 0 0;
+    padding: 5px 15px;
+    background-color: lightcyan;
+}
