@@ -1,4 +1,4 @@
-let palavrasDigitadas = []
+let palavrasDigitadas = new Set();
 let counter = 2
 let erros = 1
 const word = document.getElementById('word').innerHTML
@@ -20,13 +20,8 @@ function hideWord(simbol) {
 }
 
 function Digitar(letra) {
-    // Adicionar a Letra já digitada ao array de letras usadas
-    palavrasDigitadas.push(letra)
-
-    let unico = palavrasDigitadas.filter(function (elem, index, self) {
-        return index === self.indexOf(elem);
-    });
-    document.querySelector('.used').innerHTML = unico
+    palavrasDigitadas.add(letra);
+    document.querySelector('.used').innerHTML = letra;
 
     // invoca a function para adicionar a letra na palavre e troca a imagem da forca
     if (WORD.indexOf(letra) >= 0 && counter < 8) {
