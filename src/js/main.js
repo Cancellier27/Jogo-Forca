@@ -11,18 +11,14 @@ function recuperarPalavraCorreta(){
 const PALAVRA_CORRETA = recuperarPalavraCorreta();
 document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
-function hideWord(simbol) {
-    this.newWord = PALAVRA_CORRETA.toUpperCase().split(' ')
-    console.log(newWord)
-    // faz um .map na palavra e esconde ela trocando os caracteres por _
-    this.hideWord = newWord.map(function (a) {
-        let nova = a.split('').map(function (b) {
-            return simbol
-        })
-        return nova.join('')
-    })
-    this.ThisHideWord = hideWord
-    return document.querySelector('.secret').innerHTML = ThisHideWord
+function esconderPalavraCorreta(simbolo) {
+    const letrasDaPalavraCorreta = PALAVRA_CORRETA.split('');
+
+    const palavraEscondida = letrasDaPalavraCorreta
+        .map(() => simbolo)
+        .join(' ');
+
+    return document.querySelector('.secret').innerHTML = palavraEscondida;
 }
 
 function Digitar(letra) {
@@ -88,5 +84,5 @@ function changeImage(num) {
 }
 
 
-hideWord('__ ')
+esconderPalavraCorreta('_');
 
