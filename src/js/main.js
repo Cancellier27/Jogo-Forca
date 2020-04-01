@@ -2,10 +2,17 @@ let palavrasDigitadas = new Set();
 let counter = 2;
 let erros = 1;
 
+function recuperarPalavraCorreta(){
+    var url = new URL(window.location.href);
+
+    return url.searchParams.get("name").toUpperCase();
+}
+
+const PALAVRA_CORRETA = recuperarPalavraCorreta();
+document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
 function hideWord(simbol) {
-    this.newWord = word.toUpperCase().split(' ')
-    console.log(typeof (word))
+    this.newWord = PALAVRA_CORRETA.toUpperCase().split(' ')
     console.log(newWord)
     // faz um .map na palavra e esconde ela trocando os caracteres por _
     this.hideWord = newWord.map(function (a) {
@@ -22,8 +29,7 @@ function Digitar(letra) {
     palavrasDigitadas.add(letra);
     document.querySelector('.used').innerHTML = letra;
 
-    const palavraCorreta = document.getElementById('word').innerHTML;
-    const aLetraDigitadaEstaInclusaNaPalavra = palavraCorreta.toUpperCase().includes(letra.toUpperCase());
+    const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(letra.toUpperCase());
 
     const aindaRestamChances =  counter <8;
 
