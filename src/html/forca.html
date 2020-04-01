@@ -66,14 +66,8 @@
         <p class="used"></p>
     </div>
 
-    <a href="/index.html" class="voltar">Recomeçar</a>
+    <button onclick="window.location.reload()" class="voltar">Recomeçar</button>
 
-    <script>
-        const result = document.getElementById('word')
-        new URLSearchParams(window.location.search).forEach((value, name) => {
-            result.append(`${value}`)
-        })
-    </script>
     <script src="../js/main.js"></script>
 </body>
 
