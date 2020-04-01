@@ -1,9 +1,10 @@
-let palavrasDigitadas = new Set();
+const SIMBOLO_LETRA_NAO_ACERTADA = '_';
+const palavrasDigitadas = new Set();
 let counter = 2;
 let erros = 1;
 
 function recuperarPalavraCorreta(){
-    var url = new URL(window.location.href);
+    const url = new URL(window.location.href);
 
     return url.searchParams.get("name").toUpperCase();
 }
@@ -11,21 +12,19 @@ function recuperarPalavraCorreta(){
 const PALAVRA_CORRETA = recuperarPalavraCorreta();
 document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
-function esconderPalavraCorreta(simbolo) {
-    const letrasDaPalavraCorreta = PALAVRA_CORRETA.split('');
-
-    const palavraEscondida = letrasDaPalavraCorreta
-        .map(() => simbolo)
-        .join(' ');
-
-    return document.querySelector('.secret').innerHTML = palavraEscondida;
-}
+// CRIA UM MAPA PARA CONTROLAR SE A PALAVRA SECRETA JA FOI DESCOBERTA
+const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
+    acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
+    return acumulado;
+}, new Map());
 
 function Digitar(letra) {
+    const valorDaLetra = letra.toUpperCase();
+
     palavrasDigitadas.add(letra);
     document.querySelector('.used').innerHTML = Array.from(palavrasDigitadas).join(' - ');
 
-    const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(letra.toUpperCase());
+    const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(valorDaLetra);
 
     const aindaRestamChances =  counter <8;
 
@@ -36,7 +35,8 @@ function Digitar(letra) {
 
     if(aLetraDigitadaEstaInclusaNaPalavra){
         // invoca a function para adicionar a letra na palavre e troca a imagem da forca
-        botaLetra(letra);
+        resultado.set(valorDaLetra, valorDaLetra);
+        atualiza();
 
         return; // interrompe a execução da função
     }
@@ -52,30 +52,20 @@ function Digitar(letra) {
     }
 }
 
-function botaLetra(letra) {
-    let wordSecret = document.querySelector('.secret').innerHTML
-    console.log(typeof(wordSecret))
-    console.log(wordSecret)
-    console.log(wordSecret[18])
+function atualiza() {
+    const letrasDoResultado = Array.from(resultado.values());
+    const palavraEscondida = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
+        return `${acumulado} ${resultado.get(corrente)}`;
+    }, '');
 
-    
+    document.querySelector('.secret').innerHTML = palavraEscondida;
 
-
-
-
-
-    // // Adicionar a letra, caso certa, digitada a palavra segredo
-    // newWord.forEach(function (nome, indice, array) {
-    //     for (let i = 0; nome.length > i; ++i) {
-    //         if (nome[i] == valor) {
-    //             console.log(valor)
-    //         } else if (nome[i] != valor) {
-    //             changeImage(counter)
-    //             // console.log("imagem")
-    //         }
-    //     }
-    // })
-
+    setTimeout(() => {
+        const acabou = !letrasDoResultado.some(letra => letra === SIMBOLO_LETRA_NAO_ACERTADA);
+        if(acabou){
+            alert('VC GANHOU!');
+        }
+    }, 300);
 }
 
 function changeImage(num) {
@@ -84,5 +74,5 @@ function changeImage(num) {
 }
 
 
-esconderPalavraCorreta('_');
+atualiza();
 
