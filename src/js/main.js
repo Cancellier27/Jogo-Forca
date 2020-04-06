@@ -3,19 +3,51 @@ const SIMBOLO_ESPACO_NA_PALAVRA = '-'
 const palavrasDigitadas = new Set();
 let counter = 2;
 let erros = 1;
+const predeterminedWords = [
+    'CACHORRO',
+    'BRASIL',
+    'PARALELEPIPEDO',
+    'CELULAR',
+    'AUSTRALIA',
+    'OCEANO',
+    'DINOSSARO',
+    'POKEMON',
+    'ARVORE',
+    'CARRO',
+    'BICICLETA',
+    'ARMARIO',
+    'LUNETA',
+    'BARRACA',
+    'RESTAURANTE',
+    'PRATO',
+    'ESTRADA',
+    'CASTELO'
+]
 
-function recuperarPalavraCorreta(){
+const predeterminedWordsLength = predeterminedWords.length
+let number = Math.floor(Math.random() * predeterminedWordsLength)
+
+    function chooseWord(array, num) {
+        return array[num]
+    }
+
+function recuperarPalavraCorreta() {
     const url = new URL(window.location.href);
 
-    return url.searchParams.get("name").toUpperCase();
+    if (url.searchParams.get("checkBOX") == 'checked') {
+        return chooseWord(predeterminedWords, number)
+    } else {
+        return url.searchParams.get("name").toUpperCase();
+    }
 }
+
 
 const PALAVRA_CORRETA = recuperarPalavraCorreta();
 document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
 // CRIA UM MAPA PARA CONTROLAR SE A PALAVRA SECRETA JA FOI DESCOBERTA
 const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
-    if(corrente === ' ') {
+    if (corrente === ' ') {
         acumulado.set(corrente, SIMBOLO_ESPACO_NA_PALAVRA);
         return acumulado;
     }
@@ -33,14 +65,14 @@ function Digitar(letra) {
 
     const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(valorDaLetra);
 
-    const aindaRestamChances =  counter < 8;
+    const aindaRestamChances = counter < 8;
 
-    if(!aindaRestamChances){
+    if (!aindaRestamChances) {
         alert('Você Perdeu! Clique em recomeçar.');
         return;  // interrompe a execução da função
     }
 
-    if(aLetraDigitadaEstaInclusaNaPalavra){
+    if (aLetraDigitadaEstaInclusaNaPalavra) {
         // invoca a function para adicionar a letra na palavre e troca a imagem da forca
         resultado.set(valorDaLetra, valorDaLetra);
         atualiza();
@@ -69,7 +101,7 @@ function atualiza() {
 
     setTimeout(() => {
         const acabou = !letrasDoResultado.some(letra => letra === SIMBOLO_LETRA_NAO_ACERTADA);
-        if(acabou){
+        if (acabou) {
             alert('VC GANHOU!');
         }
     }, 300);
