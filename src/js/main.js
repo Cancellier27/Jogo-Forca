@@ -1,4 +1,5 @@
 const SIMBOLO_LETRA_NAO_ACERTADA = '_';
+const SIMBOLO_ESPACO_NA_PALAVRA = '-'
 const palavrasDigitadas = new Set();
 let counter = 2;
 let erros = 1;
@@ -14,8 +15,14 @@ document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
 // CRIA UM MAPA PARA CONTROLAR SE A PALAVRA SECRETA JA FOI DESCOBERTA
 const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
-    acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
-    return acumulado;
+    if(corrente === ' ') {
+        acumulado.set(corrente, SIMBOLO_ESPACO_NA_PALAVRA);
+        return acumulado;
+    }
+    else {
+        acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
+        return acumulado;
+    }
 }, new Map());
 
 function Digitar(letra) {
@@ -26,7 +33,7 @@ function Digitar(letra) {
 
     const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(valorDaLetra);
 
-    const aindaRestamChances =  counter <8;
+    const aindaRestamChances =  counter < 8;
 
     if(!aindaRestamChances){
         alert('Você Perdeu! Clique em recomeçar.');
