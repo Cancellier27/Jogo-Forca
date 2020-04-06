@@ -102,7 +102,8 @@ function atualiza() {
     setTimeout(() => {
         const acabou = !letrasDoResultado.some(letra => letra === SIMBOLO_LETRA_NAO_ACERTADA);
         if (acabou) {
-            alert('VC GANHOU!');
+            document.querySelector('.answer').style.display = 'flex'
+            alert('VOCÊ GANHOU!');
         }
     }, 300);
 }
