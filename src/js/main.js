@@ -1,21 +1,68 @@
 const SIMBOLO_LETRA_NAO_ACERTADA = '_';
+const SIMBOLO_ESPACO_NA_PALAVRA = '-'
 const palavrasDigitadas = new Set();
 let counter = 2;
 let erros = 1;
+let DicaDoJogo = null
+const predeterminedWords = {
+    '1': { palavra: 'CACHORRO', dica: 'Animal' },
+    '2': { palavra: 'BRASIL', dica: 'País' },
+    '3': { palavra: 'PARALELEPIPEDO', dica: 'Tem na rua' },
+    '4': { palavra: 'CELULAR', dica: 'Dispositivo' },
+    '5': { palavra: 'AUSTRALIA', dica: 'País' },
+    '6': { palavra: 'OCEANO', dica: 'Azul' },
+    '7': { palavra: 'DINOSSARO', dica: 'Animal' },
+    '8': { palavra: 'POKEMON', dica: 'Desenho' },
+    '9': { palavra: 'BICICLETA', dica: 'Transporte' },
+    '10': { palavra: 'CASTELO', dica: 'História' },
+}
 
-function recuperarPalavraCorreta(){
+const predeterminedWordsLength = Object.keys(predeterminedWords).length
+let number = Math.floor(Math.random() * predeterminedWordsLength)
+
+function testeDeDica() {
+    const url = new URL(window.location.href)
+
+    if (url.searchParams.get("checkBOX") == 'checked') {
+        return DicaDoJogo = predeterminedWords[`${number}`]['dica']
+    } else {
+        return DicaDoJogo = url.searchParams.get("dica");
+    }
+}
+
+function dicaPalavra() {
+    alert(DicaDoJogo)
+}
+
+
+function chooseWord(array, num) {
+    return array[`${num}`]['palavra']
+}
+
+function recuperarPalavraCorreta() {
     const url = new URL(window.location.href);
 
-    return url.searchParams.get("name").toUpperCase();
+    if (url.searchParams.get("checkBOX") == 'checked') {
+        return chooseWord(predeterminedWords, number)
+    } else {
+        return url.searchParams.get("name").toUpperCase();
+    }
 }
+
 
 const PALAVRA_CORRETA = recuperarPalavraCorreta();
 document.getElementById('word').innerHTML = PALAVRA_CORRETA;
 
 // CRIA UM MAPA PARA CONTROLAR SE A PALAVRA SECRETA JA FOI DESCOBERTA
 const resultado = PALAVRA_CORRETA.split('').reduce((acumulado, corrente) => {
-    acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
-    return acumulado;
+    if (corrente === ' ') {
+        acumulado.set(corrente, SIMBOLO_ESPACO_NA_PALAVRA);
+        return acumulado;
+    }
+    else {
+        acumulado.set(corrente, SIMBOLO_LETRA_NAO_ACERTADA);
+        return acumulado;
+    }
 }, new Map());
 
 function Digitar(letra) {
@@ -26,14 +73,14 @@ function Digitar(letra) {
 
     const aLetraDigitadaEstaInclusaNaPalavra = PALAVRA_CORRETA.includes(valorDaLetra);
 
-    const aindaRestamChances =  counter <8;
+    const aindaRestamChances = counter < 8;
 
-    if(!aindaRestamChances){
+    if (!aindaRestamChances) {
         alert('Você Perdeu! Clique em recomeçar.');
         return;  // interrompe a execução da função
     }
 
-    if(aLetraDigitadaEstaInclusaNaPalavra){
+    if (aLetraDigitadaEstaInclusaNaPalavra) {
         // invoca a function para adicionar a letra na palavre e troca a imagem da forca
         resultado.set(valorDaLetra, valorDaLetra);
         atualiza();
@@ -62,8 +109,9 @@ function atualiza() {
 
     setTimeout(() => {
         const acabou = !letrasDoResultado.some(letra => letra === SIMBOLO_LETRA_NAO_ACERTADA);
-        if(acabou){
-            alert('VC GANHOU!');
+        if (acabou) {
+            document.querySelector('.answer').style.display = 'flex'
+            alert('VOCÊ GANHOU!');
         }
     }, 300);
 }
@@ -75,4 +123,5 @@ function changeImage(num) {
 
 
 atualiza();
+testeDeDica();
 

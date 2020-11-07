@@ -14,6 +14,7 @@
     <div class="imagem">
         <img src="../img/forca1.png" alt="0 erros" class="img">
         <div>
+            <button class="dica" onclick=dicaPalavra()>Dica!</button>
             <h2>Erros</h2>
             <p class="erros">0</p>
         </div>
@@ -66,7 +67,7 @@
         <p class="used"></p>
     </div>
 
-    <button onclick="window.location.reload()" class="voltar">Recomeçar</button>
+    <button onclick="window.history.go(-1)" class="voltar">Nova Palavra</button>
 
     <script src="../js/main.js"></script>
 </body>
