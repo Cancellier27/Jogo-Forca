@@ -76,7 +76,7 @@ function Digitar(letra) {
     const aindaRestamChances = counter < 8;
 
     if (!aindaRestamChances) {
-        alert('Você Perdeu! Clique em recomeçar.');
+        alert('You lost! Click on New Word.');
         return;  // interrompe a execução da função
     }
 
@@ -111,7 +111,7 @@ function atualiza() {
         const acabou = !letrasDoResultado.some(letra => letra === SIMBOLO_LETRA_NAO_ACERTADA);
         if (acabou) {
             document.querySelector('.answer').style.display = 'flex'
-            alert('VOCÊ GANHOU!');
+            alert('You WON!');
         }
     }, 300);
 }
