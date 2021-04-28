@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forca</title>
+    <title>HANGMAN</title>
     <link rel="stylesheet" href="../css/estilo.css">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 </head>
@@ -14,19 +14,19 @@
     <div class="imagem">
         <img src="../img/forca1.png" alt="0 erros" class="img">
         <div>
-            <button class="dica" onclick=dicaPalavra()>Dica!</button>
-            <h2>Erros</h2>
+            <button class="dica" onclick=dicaPalavra()>Tip!</button>
+            <h2>Mistakes</h2>
             <p class="erros">0</p>
         </div>
     </div>
 
     <div class="answer">
-        <p>A palavra é: </p>
+        <p>The word is: </p>
         <p id="word"></p>
     </div>
 
     <div class="findOut">
-        <h2>Palavra:</h2>
+        <h2>Word:</h2>
         <p class="secret"></p>
     </div>
 
@@ -63,11 +63,11 @@
     </div>
 
     <div>
-        <h2>Letras Usadas:</h2>
+        <h2>Used Letters:</h2>
         <p class="used"></p>
     </div>
 
-    <button onclick="window.history.go(-1)" class="voltar">Nova Palavra</button>
+    <button onclick="window.history.go(-1)" class="voltar">New Word</button>
 
     <script src="../js/main.js"></script>
 </body>

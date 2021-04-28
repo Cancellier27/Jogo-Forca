@@ -5,16 +5,16 @@ let counter = 2;
 let erros = 1;
 let DicaDoJogo = null
 const predeterminedWords = {
-    '1': { palavra: 'CACHORRO', dica: 'Animal' },
-    '2': { palavra: 'BRASIL', dica: 'País' },
-    '3': { palavra: 'PARALELEPIPEDO', dica: 'Tem na rua' },
-    '4': { palavra: 'CELULAR', dica: 'Dispositivo' },
-    '5': { palavra: 'AUSTRALIA', dica: 'País' },
-    '6': { palavra: 'OCEANO', dica: 'Azul' },
-    '7': { palavra: 'DINOSSARO', dica: 'Animal' },
-    '8': { palavra: 'POKEMON', dica: 'Desenho' },
-    '9': { palavra: 'BICICLETA', dica: 'Transporte' },
-    '10': { palavra: 'CASTELO', dica: 'História' },
+    '1': { palavra: 'DINOSAUR', dica: 'Animal' },
+    '2': { palavra: 'BRAZIL', dica: 'Country' },
+    '3': { palavra: 'SMARTPHONE', dica: 'Samsung' },
+    '4': { palavra: 'BOTTLE', dica: 'Object' },
+    '5': { palavra: 'AUSTRALIA', dica: 'Country' },
+    '6': { palavra: 'OCEAN', dica: 'Big and blue' },
+    '7': { palavra: 'PANTHER', dica: 'Animal' },
+    '8': { palavra: 'POKEMON', dica: 'Anime' },
+    '9': { palavra: 'BICYCLE', dica: 'Transport' },
+    '10': { palavra: 'CASTLE', dica: 'History' },
 }
 
 const predeterminedWordsLength = Object.keys(predeterminedWords).length
@@ -81,7 +81,7 @@ function Digitar(letra) {
     }
 
     if (aLetraDigitadaEstaInclusaNaPalavra) {
-        // invoca a function para adicionar a letra na palavre e troca a imagem da forca
+        // invoca a function para adicionar a letra na palavr e e troca a imagem da forca
         resultado.set(valorDaLetra, valorDaLetra);
         atualiza();
 
